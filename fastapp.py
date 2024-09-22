@@ -18,7 +18,7 @@ openai.api_key = OPENAI_API_KEY
 openai_model = "gpt-3.5-turbo"
 max_responses = 1
 temperature = 0.7
-max_tokens = 512
+max_tokens = 1024
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
