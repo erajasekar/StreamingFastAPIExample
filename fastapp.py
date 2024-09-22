@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Query, HTTPException
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 import openai
 import os
 import sys
@@ -31,6 +32,14 @@ This doc does not support streaming outputs, but curl does.
 # Defining error in case of 503 from OpenAI
 error503 = "OpenAI server is busy, try again later"
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# ... (keep the existing functions and routes)
+
+@app.get("/", response_class=HTMLResponse)
+async def read_root():
+    with open("static/index.html", "r") as f:
+        return f.read()
 
 def get_response_openai(prompt):
     try:
