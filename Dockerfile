@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["uvicorn", "fastapp:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD exec uvicorn fastapp:app --host 0.0.0.0 --port $PORT --workers 1 --timeout-keep-alive 300 --timeout-graceful-shutdown 300 --log-level debug
